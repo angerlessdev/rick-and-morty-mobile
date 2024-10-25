@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/features/character/presentation/widgets/character_list_page.dart';
+import 'package:rick_and_morty/features/character/presentation/pages/character_list_page.dart';
 
 void main() {
   runApp(const MainApp());
