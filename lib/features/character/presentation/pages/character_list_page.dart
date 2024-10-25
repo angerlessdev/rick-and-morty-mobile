@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/features/character/data/remote/character_model.dart';
 import 'package:rick_and_morty/features/character/data/remote/character_service.dart';
+import 'package:rick_and_morty/features/character/presentation/pages/character_detail_page.dart';
+import 'package:rick_and_morty/features/character/presentation/widgets/character_list_item.dart';
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({super.key});
@@ -27,11 +29,22 @@ class _CharacterListPageState extends State<CharacterListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _characters.length,
-      itemBuilder: (context, index) {
-        return Text(_characters[index].name);
-      },
+    return SafeArea(
+      child: ListView.builder(
+        itemCount: _characters.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CharacterDetailPage(
+                          chacarterModel: _characters[index]),
+                    ));
+              },
+              child: CharacterListItem(characterModel: _characters[index]));
+        },
+      ),
     );
   }
 }
